@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практическая работа</title>
+
+</head>
+<body>
+    <h1>Список товаров</h1>
+    <ul class="products">
+    </ul>
+
+    <h1>Поиск минимального и максимального числа</h1>
+    <p class="all-elements"></p>
+    <button class="min">Найти минимальное число</button>
+    <button class="max">Найти максимальное число</button>
+    <p>Минимальное число: <span class="minNumber"></span></p>
+    <p>Максимальное число: <span class="maxNumber"></span></p>
+
+    <script>
+        const products = ["Мышка", "Клавиатура", "Наушники"];
+        const newProducts = ["Монитор", "Принтер", "Флешка"];
+        
+        for (let i = 0; i < newProducts.length; i++) {
+            products.push(newProducts[i]);
+        }
+        
+        const productsList = document.querySelector('.products');
+        
+        for (let i = 0; i < products.length; i++) {
+            const listItem = document.createElement('li');
+            listItem.textContent = products[i];
+            productsList.appendChild(listItem);
+        }
+
+        const numbers = [12, 5, 8, 20, 3, 16];
+        
+        const allElements = document.querySelector('.all-elements');
+        let numbersText = '';
+        for (let i = 0; i < numbers.length; i++) {
+            numbersText += numbers[i];
+            if (i < numbers.length - 1) {
+                numbersText += ', ';
+            }
+        }
+        allElements.textContent = numbersText;
+        
+        const minButton = document.querySelector('.min');
+        const maxButton = document.querySelector('.max');
+        const minNumberSpan = document.querySelector('.minNumber');
+        const maxNumberSpan = document.querySelector('.maxNumber');
+        
+        minButton.addEventListener('click', function() {
+            let min = numbers[0];
+            for (let i = 1; i < numbers.length; i++) {
+                if (numbers[i] < min) {
+                    min = numbers[i];
+                }
+            }
+            minNumberSpan.textContent = min;
+            minNumberSpan.className = 'result';
+        });
+        
+        maxButton.addEventListener('click', function() {
+            let max = numbers[0];
+            for (let i = 1; i < numbers.length; i++) {
+                if (numbers[i] > max) {
+                    max = numbers[i];
+                }
+            }
+            maxNumberSpan.textContent = max;
+            maxNumberSpan.className = 'result';
+        });
+    </script>
+</body>
+</html>
