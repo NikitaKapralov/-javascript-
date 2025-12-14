@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор стоимости доставки</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Калькулятор стоимости доставки</h1>
+    
+    <form id="deliveryForm">
+        <div class="form-group">
+            <label for="productName" class="form-label">Название товара</label>
+            <input type="text" id="productName" class="form-input">
+            <div id="productNameError" class="error-message">Название товара должно содержать от 2 до 50 символов</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="productWeight" class="form-label">Вес товара (кг)</label>
+            <input type="number" id="productWeight" class="form-input" min="0.1" step="0.1">
+            <div id="productWeightError" class="error-message">Вес должен быть положительным числом</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="deliveryDistance" class="form-label">Расстояние доставки (км)</label>
+            <input type="number" id="deliveryDistance" class="form-input" min="1">
+            <div id="deliveryDistanceError" class="error-message">Расстояние должно быть положительным числом</div>
+        </div>
+        
+        <button type="submit">Добавить товар</button>
+    </form>
+    
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Название товара</th>
+                <th>Вес (кг)</th>
+                <th>Расстояние (км)</th>
+                <th>Стоимость доставки</th>
+            </tr>
+        </thead>
+        <tbody id="productsTableBody">
+        </tbody>
+    </table>
+
+    <script src="index.js"></script>
+</body>
+</html>

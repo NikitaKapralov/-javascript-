@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма опроса пользователя</title>
+    <style>
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Форма опроса пользователя</h1>
+    
+    <form id="userSurveyForm">
+        <div class="form-group">
+            <label for="userName" class="form-label">Имя пользователя *</label>
+            <input type="text" id="userName" class="form-input">
+            <div id="userNameError" class="error-message">Пожалуйста, введите ваше имя</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="userEmail" class="form-label">Email адрес *</label>
+            <input type="email" id="userEmail" class="form-input">
+            <div id="userEmailError" class="error-message">Пожалуйста, введите корректный email адрес</div>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Пол *</label>
+            <div>
+                <label>
+                    <input type="radio" name="gender" value="Мужской">
+                    Мужской
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="Женский">
+                    Женский
+                </label>
+            </div>
+            <div id="genderError" class="error-message">Пожалуйста, выберите ваш пол</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="serviceRating" class="form-label">Оценка сервиса (от 1 до 10)</label>
+            <input type="range" id="serviceRating" min="1" max="10" value="5">
+            <span id="ratingValue">5</span>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label">Ваши интересы</label>
+            <div>
+                <label>
+                    <input type="checkbox" name="interests" value="Спорт">
+                    Спорт
+                </label>
+                <label>
+                    <input type="checkbox" name="interests" value="Музыка">
+                    Музыка
+                </label>
+                <label>
+                    <input type="checkbox" name="interests" value="Путешествия">
+                    Путешествия
+                </label>
+                <label>
+                    <input type="checkbox" name="interests" value="Кино">
+                    Кино
+                </label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="userComments" class="form-label">Дополнительные комментарии</label>
+            <textarea id="userComments" rows="4"></textarea>
+        </div>
+        
+        <button type="submit">Отправить</button>
+    </form>
+    
+    <div id="results" class="results">
+        <h2>Результаты опроса:</h2>
+        <div id="resultName"></div>
+        <div id="resultEmail"></div>
+        <div id="resultGender"></div>
+        <div id="resultRating"></div>
+        <div id="resultInterests"></div>
+        <div id="resultComments"></div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

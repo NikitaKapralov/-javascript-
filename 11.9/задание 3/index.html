@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Дизайнер банковской карты</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .control-group {
+            margin-bottom: 20px;
+        }
+        .form-input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            width: 300px;
+        }
+        .form-input:focus {
+            border-color: #3498db;
+            background-color: #f0f8ff;
+        }
+        .form-select {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            width: 320px;
+        }
+        #card {
+            width: 350px;
+            height: 200px;
+            background-color: #3498db;
+            border-radius: 10px;
+            padding: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Дизайнер банковской карты</h1>
+    
+    <div class="control-group">
+        <label for="cardText">Текст на карте:</label><br>
+        <input type="text" id="cardText" class="form-input" placeholder="Введите текст">
+    </div>
+    
+    <div class="control-group">
+        <label for="cardColor">Цвет карты:</label><br>
+        <select id="cardColor" class="form-select">
+            <option value="#ff0000">Красный</option>
+            <option value="#0000ff" selected>Синий</option>
+            <option value="#00ff00">Зеленый</option>
+        </select>
+    </div>
+    
+    <div id="card">Ваш текст здесь</div>
+    <script src="index.js"></script>
+</body>
+</html>
