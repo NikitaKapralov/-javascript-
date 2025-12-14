@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мини-галерея</title>
+    <style>
+        .thumbnail {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+            margin: 5px;
+        }
+        #full-size-container {
+            width: 800px;
+            height: 500px;
+            border: 1px solid #ccc;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="full-size-container">
+        <p>Выберите изображение</p>
+    </div>
+
+    <div>
+        <img src="1.jpg" class="thumbnail" data-full="1.jpg" alt="Изображение 1">
+        <img src="2.jpg" class="thumbnail" data-full="2.jpg" alt="Изображение 2">
+        <img src="3.jpg" class="thumbnail" data-full="3.jpg" alt="Изображение 3">
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
