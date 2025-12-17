@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <form id="film-form">
+        <h2>Добавить/Редактировать фильм</h2>
+        <label for="title">Название:</label><br />
+        <input type="text" id="title" name="title" /><br />
+        <div id="title-error" class="error-message"></div>
+        
+        <label for="genre">Жанр:</label><br />
+        <input type="text" id="genre" name="genre" /><br />
+        <div id="genre-error" class="error-message"></div>
+        
+        <label for="releaseYear">Год:</label><br />
+        <input type="text" id="releaseYear" name="releaseYear" /><br />
+        <div id="releaseYear-error" class="error-message"></div>
+        
+        <input type="checkbox" id="isWatched" name="isWatched" />
+        <label for="isWatched">Успели посмотреть?</label><br />
+        
+        <input type="hidden" id="edit-index" value="-1" />
+        <button type="submit" id="submit-btn">Добавить фильм</button>
+        <button type="button" id="cancel-edit" style="display: none;">Отмена</button>
+      </form>
+    </div>
+    
+    <div class="controls">
+      <label for="sort-select">Сортировать по:</label>
+      <select id="sort-select">
+        <option value="title">Названию</option>
+        <option value="genre">Жанру</option>
+        <option value="releaseYear">Году выпуска</option>
+        <option value="isWatched">Просмотренности</option>
+      </select>
+      <button id="sort-btn">Сортировать</button>
+    </div>
+    
+    <div class="filters">
+  <h3>Фильтрация фильмов</h3>
+  <div class="filter-controls">
+    <div class="filter-group">
+      <label for="filter-title">Название:</label>
+      <input type="text" id="filter-title" placeholder="Введите название" />
+    </div>
+    
+    <div class="filter-group">
+      <label for="filter-genre">Жанр:</label>
+      <input type="text" id="filter-genre" placeholder="Введите жанр" />
+    </div>
+    
+    <div class="filter-group">
+      <label for="filter-year">Год выпуска:</label>
+      <input type="text" id="filter-year" placeholder="Например: 2003" />
+    </div>
+    
+    <div class="filter-group">
+      <label for="filter-watched">Просмотрено:</label>
+      <select id="filter-watched">
+        <option value="all">Все</option>
+        <option value="true">Да</option>
+        <option value="false">Нет</option>
+      </select>
+    </div>
+    
+    <button id="clear-filters">Очистить фильтры</button>
+  </div>
+</div>
+
+<div class="table-header">
+  <h2>Список фильмов</h2>
+  <button id="delete-all-btn" class="delete-all-btn">Удалить все фильмы</button>
+</div>
+
+    <table id="film-table">
+      <thead>
+        <tr>
+          <th>Название</th>
+          <th>Жанр</th>
+          <th>Год</th>
+          <th>Успели посмотреть?</th>
+          <th>Действие</th>
+        </tr>
+      </thead>
+      <tbody id="film-tbody">
+      </tbody>
+    </table>
+    <script src="index.js"></script>
+  </body>
+</html>
