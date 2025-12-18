@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Bar</title>
+    <style>
+        #progress-bar {
+            height: 20px;
+            max-width: 500px;
+            background-color: #3498db;
+            transform-origin: left;
+            transform: scaleX(0);
+            margin-bottom: 20px;
+        }
+        
+        #timer {
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="progress-bar"></div>
+    <div id="timer">Прошло: 0 секунд</div>
+
+    <script>
+        function progress(time) {
+            if (time < 2) {
+                console.log("Минимальное время анимации - 2 секунды!");
+                return;
+            }
+            
+            const progressBar = document.getElementById('progress-bar');
+            const timer = document.getElementById('timer');
+            
+            progressBar.style.transform = 'scaleX(0)';
+            timer.textContent = 'Прошло: 0 секунд';
+            
+            const animationDuration = time * 1000;
+            const startTime = performance.now();
+            let secondsPassed = 0;
+            let lastSecondUpdate = 0;
+            
+            function animate(timestamp) {
+                const elapsed = timestamp - startTime;
+                
+                let progressValue = Math.min(elapsed / animationDuration, 1);
+                
+                progressBar.style.transform = `scaleX(${progressValue})`;
+                
+                const currentSecond = Math.floor(elapsed / 1000);
+                if (currentSecond > lastSecondUpdate && currentSecond <= time) {
+                    secondsPassed = currentSecond;
+                    timer.textContent = `Прошло: ${secondsPassed} секунд`;
+                    lastSecondUpdate = currentSecond;
+                }
+                
+                if (progressValue < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    timer.textContent = `Прошло: ${time} секунд`;
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            progress(5);
+        });
+    </script>
+</body>
+</html>

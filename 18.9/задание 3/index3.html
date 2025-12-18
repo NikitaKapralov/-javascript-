@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка изображений с Progress Bar</title>
+    <style>
+        .progress-bar {
+            height: 20px;
+            max-width: 500px;
+            background-color: #3498db;
+            transform-origin: left;
+            transform: scaleX(0);
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+        
+        .timer {
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            margin-bottom: 20px;
+        }
+        
+        .images-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        h2 {
+            margin-top: 40px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Загрузка изображений кошек</h2>
+    <div id="cats-progress-bar" class="progress-bar"></div>
+    <div id="cats-timer" class="timer">Прошло: 0 секунд</div>
+    <div id="cats-images-container" class="images-container"></div>
+    
+    <h2>Загрузка изображений собак</h2>
+    <div id="dogs-progress-bar" class="progress-bar"></div>
+    <div id="dogs-timer" class="timer">Прошло: 0 секунд</div>
+    <div id="dogs-images-container" class="images-container"></div>
+
+    <script>
+        const catImages = [
+            'cat1.jpg',
+            'cat2.jpg', 
+            'cat3.jpg'
+        ];
+        
+        const dogImages = [
+            'dog1.jpg',
+            'dog2.jpg',
+            'dog3.jpg'
+        ];
+        
+        function getCatImages() {
+            const delay = Math.floor(Math.random() * 3000) + 2000; 
+            
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        images: catImages,
+                        delay: delay
+                    });
+                }, delay);
+            });
+        }
+        
+        function getDogImages() {
+            const delay = Math.floor(Math.random() * 3000) + 2000; 
+            
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        images: dogImages,
+                        delay: delay
+                    });
+                }, delay);
+            });
+        }
+        
+        const progress = (time, progressBarId, timerId) => {
+            return new Promise((resolve) => {
+                if (time < 2) {
+                    time = 2;
+                }
+                
+                const progressBar = document.getElementById(progressBarId);
+                const timer = document.getElementById(timerId);
+                
+                progressBar.style.transform = 'scaleX(0)';
+                timer.textContent = 'Прошло: 0 секунд';
+                
+                const animationDuration = time * 1000;
+                let startTime = null;
+                let secondsPassed = 0;
+                
+                function animate(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    
+                    const elapsed = timestamp - startTime;
+                    
+                    let progressValue = Math.min(elapsed / animationDuration, 1);
+                    
+                    progressBar.style.transform = `scaleX(${progressValue})`;
+                    
+                    const currentSecond = Math.floor(elapsed / 1000);
+                    if (currentSecond > secondsPassed && currentSecond <= time) {
+                        secondsPassed = currentSecond;
+                        timer.textContent = `Прошло: ${secondsPassed} секунд`;
+                    }
+                    
+                    if (progressValue < 1) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        timer.textContent = `Прошло: ${time} секунд`;
+                        resolve();
+                    }
+                }
+                
+                requestAnimationFrame(animate);
+            });
+        };
+        
+        function displayImages(containerId, images) {
+            const container = document.getElementById(containerId);
+            
+            container.innerHTML = '';
+            
+            images.images.forEach(imageUrl => {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = 'Изображение';
+                container.appendChild(img);
+            });
+        }
+        
+        async function loadAllImages() {
+            const catsData = await getCatImages();
+            const catsLoadTime = catsData.delay / 1000;
+            
+            await progress(catsLoadTime, 'cats-progress-bar', 'cats-timer');
+            
+            displayImages('cats-images-container', catsData);
+            
+            const dogsData = await getDogImages();
+            const dogsLoadTime = dogsData.delay / 1000;
+            
+            await progress(dogsLoadTime, 'dogs-progress-bar', 'dogs-timer');
+            
+            displayImages('dogs-images-container', dogsData);
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllImages();
+        });
+    </script>
+</body>
+</html>
