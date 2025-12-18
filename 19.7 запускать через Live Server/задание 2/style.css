@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+.deliveries {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.delivery-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-left: 5px solid #3498db;
+    position: relative;
+}
+
+.delivery-card.status-delivery {
+    border-left-color: #3498db; 
+}
+
+.delivery-card.status-delivered {
+    border-left-color: #2ecc71; 
+}
+
+.delivery-card.status-canceled {
+    border-left-color: #e74c3c; 
+    opacity: 0.8;
+}
+
+.delivery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.delivery-header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.customer-name {
+    color: #2c3e50;
+    font-size: 1.4rem;
+}
+
+.delivery-body p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.delivery-status {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.status-delivery .delivery-status {
+    background-color: #d6eaf8;
+    color: #21618c;
+}
+
+.status-delivered .delivery-status {
+    background-color: #d5f4e6;
+    color: #196f3d;
+}
+
+.status-canceled .delivery-status {
+    background-color: #fadbd8;
+    color: #922b21;
+}
+
+.delivery-body strong {
+    color: #2c3e50;
+}
+
+.edit-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 15px;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.edit-btn:hover {
+    background-color: #2980b9;
+}
+
+.total-distance {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    font-size: 1.2rem;
+    color: #2c3e50;
+    border-top: 3px solid #2ecc71;
+}
+
+@media (max-width: 768px) {
+    .deliveries {
+        grid-template-columns: 1fr;
+    }
+}
