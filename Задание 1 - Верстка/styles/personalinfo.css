@@ -1,0 +1,31 @@
+.personal-info {
+    width: 124px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.personal-info__header-text{
+    font-size: 10px;
+    line-height: 150%;
+    font-weight: 500;
+}
+
+.personal-info__container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.personal-info__name {
+    font-size: 14px;
+    line-height: 104%;
+    font-weight: 700;
+}
+
+.personal-info__specialty {
+    color: #5c5c5c;
+    font-size: 12px;
+    line-height: 150%;
+    font-weight: 500;
+}

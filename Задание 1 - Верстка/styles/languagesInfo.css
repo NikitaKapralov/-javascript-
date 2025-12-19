@@ -1,0 +1,43 @@
+.languages-info {
+    width: 267px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.languages-info__item p {
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 104%;
+}
+
+.languages-info__container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.languages-info__progress {
+    background: #28D979;
+    width: 168px;
+    height: 11px;
+    border-radius: 3px;
+}
+
+.languages-info__progress-item {
+        background: #28D979;
+    width: 129px;
+    height: 11px;
+    border-radius: 3px;
+}
+
+.languages-info__item:nth-child(3) .languages-info__progress-item {
+    transform: translateX(-39px); 
+}
+
+.languages-info__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
